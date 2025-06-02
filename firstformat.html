@@ -168,7 +168,7 @@
                 
                 <div class="form-group">
                     <label for="amount">Amount ($):</label>
-                    <input type="text" id="amount" value="8,500,000.00" required>
+                    <input type="text" id="amount" value="8,500,000" required>
                     <div id="amountInWords" class="amount-in-words">eight million five hundred thousand dollars</div>
                 </div>
                 
@@ -249,7 +249,7 @@ Mr. David  Mckay`;
                 const formData = JSON.parse(savedData);
                 document.getElementById('firstName').value = formData.firstName || '';
                 document.getElementById('surname').value = formData.surname || '';
-                document.getElementById('amount').value = formData.amount || '8,500,000.00';
+                document.getElementById('amount').value = formData.amount || '8,500,000';
                 document.getElementById('phone').value = formData.phone || '';
                 document.getElementById('email').value = formData.email || '';
                 document.getElementById('maxChars').value = formData.maxChars || '1000';
