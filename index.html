@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inheritance Apps Navigation</title>
+    <title>Inheritance Apps</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -23,150 +23,56 @@
             padding: 0;
         }
         .app-item {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             padding: 15px;
             background-color: #f5f5f5;
             border-radius: 5px;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
         }
         .app-item:hover {
             background-color: #e9f7ef;
+            transform: translateX(5px);
         }
         .app-link {
             text-decoration: none;
             color: #2c3e50;
             font-weight: bold;
-            display: block;
+            font-size: 1.1em;
         }
         .app-link:hover {
             color: #4CAF50;
         }
         .app-description {
             color: #666;
-            margin-top: 5px;
-            font-size: 0.9em;
+            margin-top: 8px;
+            font-size: 0.95em;
         }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .refresh-btn {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .refresh-btn:hover {
-            opacity: 0.9;
+        .last-updated {
+            font-size: 0.85em;
+            color: #888;
+            font-style: italic;
+            margin-top: 30px;
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Inheritance Apps</h1>
-        <button class="refresh-btn" onclick="refreshFileList()">Refresh List</button>
-    </div>
+    <h1>Inheritance Document Templates</h1>
     
-    <ul class="app-list" id="appList">
-        <!-- Files will be dynamically listed here -->
+    <ul class="app-list">
+        <li class="app-item">
+            <a href="https://abrahamfld.github.io/inheritance/firstformat" class="app-link">First Format Template</a>
+            <div class="app-description">Standard inheritance document template with editable fields</div>
+        </li>
+        
+        <!-- Add more apps as needed -->
+        <!--
+        <li class="app-item">
+            <a href="https://abrahamfld.github.io/inheritance/secondformat" class="app-link">Second Format Template</a>
+            <div class="app-description">Alternative format for inheritance documents</div>
+        </li>
+        -->
     </ul>
 
-    <script>
-        // Known file descriptions (you can add more as needed)
-        const fileDescriptions = {
-            "firstformat.html": "First format template for inheritance documents",
-            "index.html": "This navigation page",
-            // Add more descriptions as needed
-        };
-
-        // Function to fetch and list HTML files
-        async function listHtmlFiles() {
-            try {
-                const response = await fetch('./');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch directory');
-                }
-                
-                const html = await response.text();
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                const links = doc.querySelectorAll('a[href$=".html"]');
-                
-                const appList = document.getElementById('appList');
-                appList.innerHTML = '';
-                
-                // Sort files alphabetically
-                const sortedLinks = Array.from(links).sort((a, b) => 
-                    a.getAttribute('href').localeCompare(b.getAttribute('href')));
-                
-                sortedLinks.forEach(link => {
-                    const fileName = link.getAttribute('href');
-                    if (fileName === 'index.html') return; // Skip the index file
-                    
-                    const listItem = document.createElement('li');
-                    listItem.className = 'app-item';
-                    
-                    const fileLink = document.createElement('a');
-                    fileLink.className = 'app-link';
-                    fileLink.href = fileName;
-                    fileLink.textContent = fileName;
-                    
-                    const description = document.createElement('div');
-                    description.className = 'app-description';
-                    description.textContent = fileDescriptions[fileName] || 'No description available';
-                    
-                    listItem.appendChild(fileLink);
-                    listItem.appendChild(description);
-                    appList.appendChild(listItem);
-                });
-                
-                if (sortedLinks.length <= 1) { // Only index.html
-                    const noFiles = document.createElement('li');
-                    noFiles.textContent = 'No HTML files found in this directory.';
-                    appList.appendChild(noFiles);
-                }
-            } catch (error) {
-                console.error('Error fetching files:', error);
-                const appList = document.getElementById('appList');
-                appList.innerHTML = '<li>Error loading file list. GitHub Pages may not support directory listing.</li>';
-                
-                // Fallback: Manually list known files
-                const fallbackFiles = [
-                    {name: "firstformat.html", desc: "First format template for inheritance documents"}
-                    // Add more files as needed
-                ];
-                
-                fallbackFiles.forEach(file => {
-                    const listItem = document.createElement('li');
-                    listItem.className = 'app-item';
-                    
-                    const fileLink = document.createElement('a');
-                    fileLink.className = 'app-link';
-                    fileLink.href = file.name;
-                    fileLink.textContent = file.name;
-                    
-                    const description = document.createElement('div');
-                    description.className = 'app-description';
-                    description.textContent = file.desc;
-                    
-                    listItem.appendChild(fileLink);
-                    listItem.appendChild(description);
-                    appList.appendChild(listItem);
-                });
-            }
-        }
-
-        // Refresh file list
-        function refreshFileList() {
-            listHtmlFiles();
-        }
-
-        // Initialize the page
-        window.onload = listHtmlFiles;
-    </script>
+    <div class="last-updated">Last updated: June 2023</div>
 </body>
 </html>
