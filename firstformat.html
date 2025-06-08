@@ -518,10 +518,11 @@ AUDIT_MANAGER_NAME`;
             let fullText = '';
             
             sections.forEach(section => {
-                const sectionText = section.textContent
-                    .replace(/Section \d+ \(\d+ chars\)(Copy|Toggle) Section \d+/g, '')
-                    .trim();
-                fullText += sectionText + '\n\n';
+                // Get only the content div text, excluding the section header and buttons
+                const content = section.querySelector('div');
+                if (content) {
+                    fullText += content.textContent.trim() + '\n\n';
+                }
             });
             
             navigator.clipboard.writeText(fullText.trim()).then(() => {
