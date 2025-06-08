@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document Template Editor</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -148,6 +142,15 @@
             flex-wrap: wrap;
         }
     </style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Template Editor</title>
+    <style>
+       
+    </style>
 </head>
 <body>
     <div class="container">
@@ -182,6 +185,29 @@
                     <input type="email" id="email" required>
                 </div>
                 
+                <div class="form-group">
+                    <label for="socialMedia">Social Media Platform:</label>
+                    <input type="text" id="socialMedia" placeholder="Facebook, WhatsApp, etc." required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="deceasedGender">Deceased Person's Gender:</label>
+                    <select id="deceasedGender">
+                        <option value="male">Male (Mr. Alex)</option>
+                        <option value="female">Female (Mrs. Mavis)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="auditManager">Audit Manager Name:</label>
+                    <input type="text" id="auditManager" value="Mr. David Mckay" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="bankName">Bank Name:</label>
+                    <input type="text" id="bankName" value="ROYAL BANK OF CANADA (RBC)" required>
+                </div>
+                
                 <div class="settings-group">
                     <div class="settings-title">Section Settings</div>
                     <label>
@@ -210,15 +236,15 @@
         // Store the original template
         const originalTemplate = `Hello! Mr firstname surname, Peace be unto you and blessings of God.
 
-I am Mr. David Mckay, from Canada. I lived in 49 Halfmoon Sq, Toronto, Ontario M1C 3V4. I am a Bank Officer here in RBC ( Royal Bank of Canada). Firstly I want you to know I appreciate your generosity in accepting my request here on Instagram and I want to assure you that you will not regret your action. I believe it is the wish of God for me to come across you in this very short time as I am having an important and urgent business discussion I wish to share with you which I believe will interest and benefit you because it is in connection with your surname name and nationality and you are going to benefit from it.
+I am AUDIT_MANAGER_NAME, from Canada. I lived in 49 Halfmoon Sq, Toronto, Ontario M1C 3V4. I am a Bank Officer here in BANK_NAME. Firstly I want you to know I appreciate your generosity in accepting my request here on socia_media_plateform_here and I want to assure you that you will not regret your action. I believe it is the wish of God for me to come across you in this very short time as I am having an important and urgent business discussion I wish to share with you which I believe will interest and benefit you because it is in connection with your surname name and nationality and you are going to benefit from it.
 
-I am writing to you concerning a man/citizen from your country Mr. Alex surname who was a business Assistance of Getchell Gold Corp. Getchell Gold is a private company. On the 2nd of February 2015 Mr. Alex surname, opened a Fixed deposit private account in our bank the ROYAL BANK OF CANADA, and deposited the sum of $ Amount (amount written in words goes here ) into the account for the purpose of opening a car manufacturing company there in your country.
+I am writing to you concerning a man/citizen from your country DECEASED_PERSON_NAME surname who was a business Assistance of Getchell Gold Corp. Getchell Gold is a private company. On the 2nd of February 2015 DECEASED_PERSON_NAME surname, opened a Fixed deposit private account in our bank the BANK_NAME, and deposited the sum of $ Amount (amount written in words goes here ) into the account for the purpose of opening a car manufacturing company there in your country.
 
-But as a great businessman and constant/regular traveller, it was very unfortunate that Mr. Alex was among the dead victims of the (COVID-19)  Coronavirus disease, he died on 19th of January 2020. So the main reason I am telling you is that. Late Mr. Alex did not mention any next of kin/heir when he opened the fixed deposit private account and deposited the money.  He was a widower, married to the late Mrs. Elizabeth surname" and they didn't have any kids and he did not mention any relatives' names. My bank board management team don't have any information about this yet, they don't know about the account and his death, the only reason I knew about this because i am the Audit Manager, and i review an Exercise of All the accounts of the bank and any transaction of such must be confirmed by me to be completed and also the awareness of the manager of the bank. So, as I am writing to you now, the only people who know about this are you, and me, and the transaction will be carried out successfully between the two of us.
+But as a great BUSINESS_TITLE and constant/regular traveller, it was very unfortunate that DECEASED_PERSON_NAME was among the dead victims of the (COVID-19)  Coronavirus disease, PRONOUN died on 19th of January 2020. So the main reason I am telling you is that. Late DECEASED_PERSON_NAME did not mention any next of kin/heir when PRONOUN opened the fixed deposit private account and deposited the money.  PRONOUN was a WIDOW_STATUS, married to the late SPOUSE_TITLE SPOUSE_NAME surname" and they didn't have any kids and PRONOUN did not mention any relatives' names. My bank board management team don't have any information about this yet, they don't know about the account and DECEASED_PERSON_NAME surname's death, the only reason I knew about this because i am the Audit Manager, and i review an Exercise of All the accounts of the bank and any transaction of such must be confirmed by me to be completed and also the awareness of the manager of the bank. So, as I am writing to you now, the only people who know about this are you, and me, and the transaction will be carried out successfully between the two of us.
 
 Last week my Bank Management had a meeting for a bank verification exercise to note dormant and private deposit accounts. I knew this would happen and that is why I have been looking for a means to handle the situation before my bank board management team finds out about it because if they find out they will request for the money to be shared among them which I can reject and I don't want such to happen.  That was why when I saw your details, I was happy.
 
-I'm now seeking your cooperation to present you as Next of Kin/Heir to the account since you have the same last name and same nationality as Mr. Alex, and my bank headquarters will release the account to you through my Authority and that of the Manager of the bank. There is no risk involved. Do not be afraid I give my 100% trust; the transaction will be executed under a legitimate arrangement, that will protect you from any breach of any rule defining correct procedure or behavior in this transaction.. It is better that we claim the money than allowing the Bank Directors to share it among themselves.
+I'm now seeking your cooperation to present you as Next of Kin/Heir to the account since you have the same last name and same nationality as DECEASED_PERSON_NAME, and my bank headquarters will release the account to you through my Authority and that of the Manager of the bank. There is no risk involved. Do not be afraid I give my 100% trust; the transaction will be executed under a legitimate arrangement, that will protect you from any breach of any rule defining correct procedure or behavior in this transaction.. It is better that we claim the money than allowing the Bank Directors to share it among themselves.
 
 I am not a greedy person, so I am suggesting we share the funds, 50%/50% which is 50% for you, 50% for me, since you are the one to receive the money in your country. I hope the sharing is a farewell Agreement and my own share of the money will assist me to start my new project and help the Orphanage home. Let me know your opinion on this and please do treat this information as confidential. I shall give you more details once I receive your urgent response through my official email address below
 
@@ -227,7 +253,7 @@ My whatsApp: phone number if provided
 My email address: email goes here
 
 Best Regards;
-Mr. David  Mckay`;
+AUDIT_MANAGER_NAME`;
 
         // Function to save form data to localStorage
         function saveFormData() {
@@ -237,6 +263,10 @@ Mr. David  Mckay`;
                 amount: document.getElementById('amount').value,
                 phone: document.getElementById('phone').value,
                 email: document.getElementById('email').value,
+                socialMedia: document.getElementById('socialMedia').value,
+                deceasedGender: document.getElementById('deceasedGender').value,
+                auditManager: document.getElementById('auditManager').value,
+                bankName: document.getElementById('bankName').value,
                 maxChars: document.getElementById('maxChars').value
             };
             localStorage.setItem('documentTemplateFormData', JSON.stringify(formData));
@@ -252,6 +282,10 @@ Mr. David  Mckay`;
                 document.getElementById('amount').value = formData.amount || '8,500,000';
                 document.getElementById('phone').value = formData.phone || '';
                 document.getElementById('email').value = formData.email || '';
+                document.getElementById('socialMedia').value = formData.socialMedia || '';
+                document.getElementById('deceasedGender').value = formData.deceasedGender || 'male';
+                document.getElementById('auditManager').value = formData.auditManager || 'Mr. David Mckay';
+                document.getElementById('bankName').value = formData.bankName || 'ROYAL BANK OF CANADA (RBC)';
                 document.getElementById('maxChars').value = formData.maxChars || '1000';
                 
                 // Update amount in words if amount exists
@@ -400,7 +434,7 @@ Mr. David  Mckay`;
         });
 
         // Add event listeners to all form inputs to save data on change
-        document.querySelectorAll('#templateForm input').forEach(input => {
+        document.querySelectorAll('#templateForm input, #templateForm select').forEach(input => {
             input.addEventListener('change', saveFormData);
             input.addEventListener('blur', saveFormData);
         });
@@ -521,6 +555,10 @@ Mr. David  Mckay`;
             let amount = document.getElementById('amount').value;
             const phone = document.getElementById('phone').value;
             const email = document.getElementById('email').value;
+            const socialMedia = document.getElementById('socialMedia').value;
+            const deceasedGender = document.getElementById('deceasedGender').value;
+            const auditManager = document.getElementById('auditManager').value;
+            const bankName = document.getElementById('bankName').value;
             const maxChars = parseInt(document.getElementById('maxChars').value) || 1000;
             
             // Format amount (remove commas for calculation)
@@ -532,9 +570,37 @@ Mr. David  Mckay`;
             // Create a copy of the original template
             let updatedTemplate = originalTemplate;
             
+            // Determine deceased person's details based on gender
+            let deceasedPersonName, pronoun, businessTitle, widowStatus, spouseTitle, spouseName;
+            
+            if (deceasedGender === 'female') {
+                deceasedPersonName = 'Mrs. Mavis';
+                pronoun = 'she';
+                businessTitle = 'businesswoman';
+                widowStatus = 'widow';
+                spouseTitle = 'Mr.';
+                spouseName = 'John'; // Default spouse name for female deceased
+            } else {
+                deceasedPersonName = 'Mr. Alex';
+                pronoun = 'he';
+                businessTitle = 'businessman';
+                widowStatus = 'widower';
+                spouseTitle = 'Mrs.';
+                spouseName = 'Elizabeth'; // Default spouse name for male deceased
+            }
+            
             // Replace placeholders with actual values
             updatedTemplate = updatedTemplate.replace(/firstname/g, firstName);
             updatedTemplate = updatedTemplate.replace(/surname/g, surname);
+            updatedTemplate = updatedTemplate.replace('socia_media_plateform_here', socialMedia);
+            updatedTemplate = updatedTemplate.replace(/DECEASED_PERSON_NAME/g, deceasedPersonName);
+            updatedTemplate = updatedTemplate.replace(/PRONOUN/g, pronoun);
+            updatedTemplate = updatedTemplate.replace(/BUSINESS_TITLE/g, businessTitle);
+            updatedTemplate = updatedTemplate.replace(/WIDOW_STATUS/g, widowStatus);
+            updatedTemplate = updatedTemplate.replace(/SPOUSE_TITLE/g, spouseTitle);
+            updatedTemplate = updatedTemplate.replace(/SPOUSE_NAME/g, spouseName);
+            updatedTemplate = updatedTemplate.replace(/AUDIT_MANAGER_NAME/g, auditManager);
+            updatedTemplate = updatedTemplate.replace(/BANK_NAME/g, bankName);
             updatedTemplate = updatedTemplate.replace('Amount', amount);
             updatedTemplate = updatedTemplate.replace('amount written in words goes here', amountWords);
             
