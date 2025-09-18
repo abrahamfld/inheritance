@@ -1,15 +1,390 @@
-Hello Mr. Hamouda Al-Asmar — peace be unto you and the blessings of God.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Template Editor</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(to right, #2c3e50, #4a6491);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        h1 {
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .description {
+            color: #ecf0f1;
+            font-size: 16px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .editor-container {
+            display: flex;
+            flex-wrap: wrap;
+            min-height: 500px;
+        }
+        
+        .options-panel {
+            flex: 1;
+            min-width: 300px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-right: 1px solid #eaecef;
+        }
+        
+        .preview-panel {
+            flex: 2;
+            min-width: 400px;
+            padding: 25px;
+            background: white;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 15px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .preview-container {
+            background: #f9f9f9;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        
+        .preview {
+            white-space: pre-wrap;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+        
+        .template-variables {
+            background: #e1f0fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-size: 14px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .template-variables h3 {
+            margin-bottom: 12px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+        }
+        
+        .template-variables h3 i {
+            margin-right: 10px;
+        }
+        
+        .variable {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin: 6px 6px 6px 0;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        
+        .btn-copy {
+            background: #27ae60;
+        }
+        
+        .btn-copy:hover {
+            background: #219653;
+        }
+        
+        .btn-reset {
+            background: #e74c3c;
+        }
+        
+        .btn-reset:hover {
+            background: #c0392b;
+        }
+        
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .preview-title {
+            font-size: 20px;
+            color: #2c3e50;
+        }
+        
+        @media (max-width: 768px) {
+            .editor-container {
+                flex-direction: column;
+            }
+            
+            .options-panel {
+                border-right: none;
+                border-bottom: 1px solid #eaecef;
+            }
+            
+            .actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+        
+        .highlight {
+            background-color: #fff8e1;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Email Template Editor</h1>
+            <p class="description">Customize and edit your email template with variables</p>
+        </header>
+        
+        <div class="editor-container">
+            <div class="options-panel">
+                <div class="template-variables">
+                    <h3>📋 Available Variables</h3>
+                    <span class="variable">${recipientName}</span>
+                    <span class="variable">${deceasedName}</span>
+                    <span class="variable">${bankName}</span>
+                    <span class="variable">${accountDate}</span>
+                    <span class="variable">${amount}</span>
+                    <span class="variable">${deathDate}</span>
+                    <span class="variable">${deceasedWife}</span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="recipientName">Recipient Name</label>
+                    <input type="text" id="recipientName" value="Mr. Hamouda Al-Asmar">
+                </div>
+                
+                <div class="form-group">
+                    <label for="deceasedName">Deceased Person's Name</label>
+                    <input type="text" id="deceasedName" value="Mr. Alex Al-Asmar">
+                </div>
+                
+                <div class="form-group">
+                    <label for="bankName">Bank Name</label>
+                    <input type="text" id="bankName" value="Getchell Gold Corp.">
+                </div>
+                
+                <div class="form-group">
+                    <label for="accountDate">Account Opening Date</label>
+                    <input type="text" id="accountDate" value="February 2, 2015">
+                </div>
+                
+                <div class="form-group">
+                    <label for="amount">Amount</label>
+                    <input type="text" id="amount" value="$8,500,000.00 (Eight Million Five Hundred Thousand US Dollars)">
+                </div>
+                
+                <div class="form-group">
+                    <label for="deathDate">Death Date</label>
+                    <input type="text" id="deathDate" value="January 19, 2020">
+                </div>
+                
+                <div class="form-group">
+                    <label for="deceasedWife">Deceased Wife's Name</label>
+                    <input type="text" id="deceasedWife" value="Mrs. Elizabeth Al-Asmar">
+                </div>
+                
+                <div class="actions">
+                    <button class="btn-copy" onclick="copyToClipboard()">📋 Copy Text</button>
+                    <button class="btn-reset" onclick="resetValues()">🔄 Reset Values</button>
+                </div>
+            </div>
+            
+            <div class="preview-panel">
+                <div class="preview-header">
+                    <h2 class="preview-title">Live Preview</h2>
+                    <span id="wordCount">Words: 0</span>
+                </div>
+                <div class="preview-container">
+                    <div class="preview" id="preview">
+                        <!-- Preview will be generated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Template with placeholder variables
+        const emailTemplate = `Hello \${recipientName} — peace be unto you and the blessings of God.
 
 I've been holding this back for a long time, not sure if I should tell you or just ignore it. I kept thinking maybe it's better left unsaid, but after many thoughts and prayers, I truly believe you deserve to know. So today, I'm finally sharing what I've been carrying with me.
 
-This is about a man from your country, Mr. Alex Al-Asmar, who was a business associate of Getchell Gold Corp., a private company. On February 2, 2015, he opened a fixed-deposit private account at my bank and deposited $8,500,000.00 (Eight Million Five Hundred Thousand US Dollars). The funds were meant to start a car manufacturing company in your country.
+This is about a man from your country, \${deceasedName}, who was a business associate of \${bankName}, a private company. On \${accountDate}, he opened a fixed-deposit private account at my bank and deposited \${amount}. The funds were meant to start a car manufacturing company in your country.
 
-Sadly, Mr. Alex Al-Asmar — a frequent traveler and businessman — passed away on January 19, 2020, as one of the victims of the COVID-19 pandemic. When he opened the account, he didn't mention any next of kin or heir. He was a widower — his wife, Mrs. Elizabeth Al-Asmar, had also passed away, and they had no children. He never listed any relatives either.
+Sadly, \${deceasedName} — a frequent traveler and businessman — passed away on \${deathDate}, as one of the victims of the COVID-19 pandemic. When he opened the account, he didn't mention any next of kin or heir. He was a widower — his wife, \${deceasedWife}, had also passed away, and they had no children. He never listed any relatives either.
 
 Up to now, my bank's management is unaware of both his death and this account. I only know about it because of my position and responsibilities in reviewing accounts. As I'm sharing this with you, the only people aware of the situation are you and me — which means it can only be handled quietly between us.
 
 Recently, the bank started a verification exercise for dormant and private deposit accounts. I knew this would happen, and that's why I've been struggling with whether to tell you or not. If the board finds out, the directors will simply claim the money for themselves. But when I came across your details, I felt it wasn't by chance.
 
-Since you share the same last name and nationality as Mr. Alex Al-Asmar, I want to seek your cooperation to present you as his rightful next of kin. With my authority and that of the bank manager, the funds can be released to you safely. There is no risk — everything will be done under a legitimate arrangement that will fully protect you.
+Since you share the same last name and nationality as \${deceasedName}, I want to seek your cooperation to present you as his rightful next of kin. With my authority and that of the bank manager, the funds can be released to you safely. There is no risk — everything will be done under a legitimate arrangement that will fully protect you.
 
-I am not a greedy person, so I propose we share the funds equally: 50% for you and 50% for me. My share will help me start a new project and support an orphanage. I only ask that you keep this completely confidential. Once I get a positive response from you , I'll  guide you through the process.
+I am not a greedy person, so I propose we share the funds equally: 50% for you and 50% for me. My share will help me start a new project and support an orphanage. I only ask that you keep this completely confidential. Once I get a positive response from you , I'll  guide you through the process.`;
+
+        // Function to update the preview
+        function updatePreview() {
+            let content = emailTemplate;
+            
+            // Replace all variables with their current values
+            content = content.replace(/\${recipientName}/g, document.getElementById('recipientName').value);
+            content = content.replace(/\${deceasedName}/g, document.getElementById('deceasedName').value);
+            content = content.replace(/\${bankName}/g, document.getElementById('bankName').value);
+            content = content.replace(/\${accountDate}/g, document.getElementById('accountDate').value);
+            content = content.replace(/\${amount}/g, document.getElementById('amount').value);
+            content = content.replace(/\${deathDate}/g, document.getElementById('deathDate').value);
+            content = content.replace(/\${deceasedWife}/g, document.getElementById('deceasedWife').value);
+            
+            document.getElementById('preview').textContent = content;
+            
+            // Update word count
+            const wordCount = content.trim().split(/\s+/).length;
+            document.getElementById('wordCount').textContent = `Words: ${wordCount}`;
+        }
+        
+        // Function to copy the text to clipboard
+        function copyToClipboard() {
+            updatePreview();
+            const textToCopy = document.getElementById('preview').textContent;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                alert('Text successfully copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                // Fallback method for older browsers
+                const textArea = document.createElement("textarea");
+                textArea.value = textToCopy;
+                document.body.appendChild(textArea);
+                textArea.select();
+                try {
+                    document.execCommand('copy');
+                    alert('Text copied to clipboard!');
+                } catch (err) {
+                    alert('Failed to copy text. Please try again.');
+                }
+                document.body.removeChild(textArea);
+            });
+        }
+        
+        // Function to reset input values to defaults
+        function resetValues() {
+            if (confirm("Are you sure you want to reset all values to default?")) {
+                document.getElementById('recipientName').value = 'Mr. Hamouda Al-Asmar';
+                document.getElementById('deceasedName').value = 'Mr. Alex Al-Asmar';
+                document.getElementById('bankName').value = 'Getchell Gold Corp.';
+                document.getElementById('accountDate').value = 'February 2, 2015';
+                document.getElementById('amount').value = '$8,500,000.00 (Eight Million Five Hundred Thousand US Dollars)';
+                document.getElementById('deathDate').value = 'January 19, 2020';
+                document.getElementById('deceasedWife').value = 'Mrs. Elizabeth Al-Asmar';
+                
+                updatePreview();
+            }
+        }
+        
+        // Add event listeners to all input fields
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', updatePreview);
+        });
+        
+        // Initialize the preview on page load
+        window.onload = function() {
+            updatePreview();
+        };
+    </script>
+</body>
+</html>
